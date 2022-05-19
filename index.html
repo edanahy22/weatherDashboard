@@ -1,34 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Weather Dashboard</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="./assets/style.css"/>
-    </head>
 
-    <body>
-        <header>
-            <nav class="navbar navbar-light bg-light">
-                <div class="container-fluid">
-                  <span class="navbar-brand mb-0 h1">Weather Dashboard</span>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/style.css" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1 title">Weather Dashboard</span>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container current">
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <form>
+                        <input type="text" class="form-control input" id="city" />
+                        <button type="submit" class="btn btn-primary" id="search-button">Submit</button>
+
+                    </form>
                 </div>
-              </nav>
-        </header>
-        <form>
-            <input type="text" class= "input" id="city"/>
-            <button id="search-button">Search</button>
-            <!-- <button class="saved-cities"></button> -->
-        </form>
-        <div class="container">
-            <div>
-                <h2 id="city-name"></h2>
-                <h4 id="temp"></h4>
+            </div>
+
+            <div class="col-6">
+                <div class="jumbotron">
+                    <h3 id="city-name"></h3>
+                    <h6 id="today-date"></h6>
+                    <p id="temp"></p>
+                    <p id="wind"></p>
+                    <p id="humidity"></p>
+                    <p id="uv-index"></p>
+                </div>
             </div>
         </div>
+    </div>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="./assets/script.js"></script>
-    </body>
+    <div class="container forecast">
+        <div class="row">
+
+
+        <div class="col-12 col-md-2" id="day-1">
+            <h5 id="future-date1"></h5>
+            <p id="f-temp1"></p>
+            <p id="f-wind1"></p>
+            <p id="f-humidity1"></p>
+        </div>
+
+        <div class="col-12 col-md-2" id="day-2">
+            <h5 id="future-date2"></h5>
+            <p id="f-temp2"></p>
+            <p id="f-wind2"></p>
+            <p id="f-humidity2"></p>
+        </div>
+
+        <div class="col-12 col-md-2" id="day-3">
+            <h5 id="future-date3"></h5>
+            <p id="f-temp3"></p>
+            <p id="f-wind3"></p>
+            <p id="f-humidity3"></p>
+        </div>
+
+        <div class="col-12 col-md-2" id="day-4">
+            <h5 id="future-date4"></h5>
+            <p id="f-temp4"></p>
+            <p id="f-wind4"></p>
+            <p id="f-humidity4"></p>
+        </div>
+
+        <div class="col-12 col-md-2" id="day-5">
+            <h5 id="future-date5"></h5>
+            <p id="f-temp5"></p>
+            <p id="f-wind5"></p>
+            <p id="f-humidity5"></p>
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./assets/script.js"></script>
+</body>
+
 </html>

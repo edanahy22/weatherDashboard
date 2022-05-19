@@ -3,13 +3,72 @@
 var savedCitiesBtn = document.querySelector('.saved-cities');
 var apiKey= 'd35cd0aa37b6ae911ac59a75948a0658';
 var apiUrl= 'https://api.openweathermap.org/';
+var output =  $('#future').innerHTML;
 
+
+// function to display day
+function displayDate() {
+    var todayDate = moment().format('l');
+    $('#today-date').text(todayDate);
+  }
+  
+function displayFuture(){
+    var tomorrowDate = moment().add(1, 'days').format('l'); 
+    $('#future-date1').text(tomorrowDate);
+
+    var twoDate = moment().add(2, 'days').format('l'); 
+    $('#future-date2').text(twoDate);
+
+    var threeDate = moment().add(3, 'days').format('l'); 
+    $('#future-date3').text(threeDate);
+
+    var fourDate = moment().add(4, 'days').format('l'); 
+    $('#future-date4').text(fourDate);
+
+    var fiveDate = moment().add(5, 'days').format('l'); 
+    $('#future-date5').text(fiveDate);
+
+}
 
 function renderWeather(data){
-    console.log(data.current.temp);
+    console.log(data);
     $('#city-name').text($("#city").val()); 
-    $('#temp').text(data.current.temp);
+    $('#temp').text('Temperature: ' + data.current.temp);
+    $('#wind').text('Wind: ' + data.current.wind_speed);
+    $('#humidity').text('Humidity: ' + data.current.humidity);
+    $('#uv-index').text('UV Index: ' + data.current.uvi);
+    
+    displayDate();
+
 }
+
+function renderFuture(data){
+    console.log(data.daily[1]);
+    
+
+    $('#f-temp1').text('Temp: ' + data.daily[1].temp.day);
+    $('#f-wind1').text('Wind: ' + data.daily[1].wind_speed);
+    $('#f-humidity1').text('Humidity: ' + data.daily[1].humidity);
+
+    $('#f-temp2').text('Temp: ' + data.daily[2].temp.day);
+    $('#f-wind2').text('Wind: ' + data.daily[2].wind_speed);
+    $('#f-humidity2').text('Humidity: ' + data.daily[2].humidity);
+
+    $('#f-temp3').text('Temp: ' + data.daily[3].temp.day);
+    $('#f-wind3').text('Wind: ' + data.daily[3].wind_speed);
+    $('#f-humidity3').text('Humidity: ' + data.daily[3].humidity);
+
+    $('#f-temp4').text('Temp: ' + data.daily[4].temp.day);
+    $('#f-wind4').text('Wind: ' + data.daily[4].wind_speed);
+    $('#f-humidity4').text('Humidity: ' + data.daily[4].humidity);
+
+    $('#f-temp5').text('Temp: ' + data.daily[5].temp.day);
+    $('#f-wind5').text('Wind: ' + data.daily[5].wind_speed);
+    $('#f-humidity5').text('Humidity: ' + data.daily[5].humidity);
+
+    displayFuture();
+}
+
 
 
 function weather(lat,lon){
@@ -22,6 +81,8 @@ function weather(lat,lon){
     .then(function(data){ 
         
         renderWeather(data);
+        renderFuture(data);
+        // renderFuture(data);
     })
 }
 
@@ -45,7 +106,7 @@ function coordinates (city) {
 
     }
 
-
+    
 
 
 $('#search-button').on("click", function(event){
