@@ -35,6 +35,8 @@ function displayFuture() {
 // render current weather data to page
 function renderWeather(data) {
     console.log(data);
+    $('.current').addClass("jumbotron").attr('style','margin:1rem;');
+
     $('#city-name').text($("#city").val());
     $('#icon').attr('src', `https://openweathermap.org/img/w/${data.current.weather[0].icon}.png`)
     $('#temp').text('Temperature: ' + data.current.temp);
@@ -59,7 +61,8 @@ function renderWeather(data) {
 
 function renderFuture(data) {
     console.log(data.daily[1]);
-
+    
+    $('.future').addClass('card').attr('style', 'display:flex; justify-content:center; margin:1rem;');
 
     $('#f-temp1').text('Temp: ' + data.daily[1].temp.day);
     $('#icon1').attr('src', `https://openweathermap.org/img/w/${data.daily[1].weather[0].icon}.png`)
@@ -122,11 +125,10 @@ function coordinates(city) {
         })
         .catch(function (err) {
             console.error(err)
+            alert('Please enter a city')
         })
 
 }
-
-
 
 
 $('#search-button').on("click", function (event) {
@@ -143,30 +145,39 @@ $('#search-button').on("click", function (event) {
 
 function pullHistory() {
     var history = localStorage.getItem('searchHistory');
+   
     if (history) {
         searchHistory = JSON.parse(history);
     }
+    
     console.log(searchHistory);
+    renderButtons();
 }
 
-function renderHistory() {
-    var searchHistory = $('#history');
-
+function renderButtons () {
+    
+    // For each item in the search history array
     for (var i = 0; i < searchHistory.length; i++) {
-        var button = document.createElement('button');
-        button.setAttribute('type', 'button');
-        button.setAttribute('data-search', searchHistory[i]);
-        button.textContent = searchHistory[i];
-        searchHistory.append(button);
-        console.log('hello');
+        // Store the search term (city) and create a button with the search term displayed
+        let cityName = searchHistory[i];
+        let historyBtn = $(
+            '<button type="button" class="btn btn-primary btn-lg btn-block historyBtn">'
+        ).text(cityName);
+        // append the buttons to the search history div
+        $('#history').append(historyBtn);
     }
-    console.log('hi');
-}
-
+};
 
 pullHistory();
-renderHistory();
 
+$(".historyBtn").on('click', function(){
+    let cityButton = $('.historyBtn').val();
+    coordinates(cityButton);
+    weather(lat, lon);
+});
+    
+
+// callCities();
 
 // function renderSavedCities(){
 //     var savedCitiesBtn= localStorage.getItem('.input');
