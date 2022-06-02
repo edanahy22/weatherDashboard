@@ -37,7 +37,7 @@ function renderWeather(data) {
     console.log(data);
     $('.current').addClass("jumbotron").attr('style','margin:1rem;');
 
-    $('#city-name').text($("#city").val());
+    // $('#city-name').text($("#city").val());
     $('#icon').attr('src', `https://openweathermap.org/img/w/${data.current.weather[0].icon}.png`)
     $('#temp').text('Temperature: ' + data.current.temp);
     $('#wind').text('Wind: ' + data.current.wind_speed);
@@ -105,7 +105,7 @@ function weather(lat, lon) {
 
             renderWeather(data);
             renderFuture(data);
-            // renderFuture(data);
+        
         })
 }
 
@@ -125,8 +125,9 @@ function coordinates(city) {
         })
         .catch(function (err) {
             console.error(err)
-            alert('Please enter a city')
+            // alert('Please enter a city')
         })
+    $('#city-name').text(city);
 
 }
 
@@ -135,13 +136,25 @@ $('#search-button').on("click", function (event) {
     event.preventDefault();
     var city = $(this).siblings("#city").val();
     console.log(city);
-    var input = $(this).siblings(".input");
-    console.log(input);
+
+    if ($('#city').val() === "" || $('#city').val() === null){
+        return;
+    }
 
     coordinates(city);
+    setHistory(city);
+});
+
+function setHistory(city) {
+
+    if (searchHistory.indexOf(city) !== -1){
+        return;
+    }
+
     searchHistory.push(city);
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-});
+    pullHistory();
+}
 
 function pullHistory() {
     var history = localStorage.getItem('searchHistory');
@@ -155,7 +168,7 @@ function pullHistory() {
 }
 
 function renderButtons () {
-    
+    $('#history').empty();
     // For each item in the search history array
     for (var i = 0; i < searchHistory.length; i++) {
         // Store the search term (city) and create a button with the search term displayed
@@ -163,18 +176,23 @@ function renderButtons () {
         let historyBtn = $(
             '<button type="button" class="btn btn-primary btn-lg btn-block historyBtn">'
         ).text(cityName);
+        historyBtn.on('click', function(){
+            coordinates(cityName);  
+        });
+
         // append the buttons to the search history div
         $('#history').append(historyBtn);
     }
 };
 
+
 pullHistory();
 
-$(".historyBtn").on('click', function(){
-    let cityButton = $('.historyBtn').val();
-    coordinates(cityButton);
-    weather(lat, lon);
-});
+// $(".historyBtn").on('click', function(){
+//     let cityButton = $('.historyBtn').val();
+//     coordinates(cityButton);
+//     weather(lat, lon);
+// });
     
 
 // callCities();
