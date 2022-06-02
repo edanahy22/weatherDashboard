@@ -23,7 +23,7 @@ The cities that the user types in are saved to a button below the search bar. Th
 
 
 ## URL
-
+[Weather Dashboard URL](https://edanahy22.github.io/weatherDashboard/)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
