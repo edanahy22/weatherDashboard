@@ -1,15 +1,15 @@
-# weatherDashboard
+# Weather Dashboard
 
 Weather Dashboard is an application designed to display the current weather forecast for a desired city. It also displays a five-day forecast for the selected city.
 
 ## Technologies Used
-HTML
-CSS
-Bootstrap
-JavaScript
-JQuery
-Open Weather API
-Moment.JS
+HTML\
+CSS\
+Bootstrap\
+JavaScript\
+JQuery\
+Open Weather API\
+Moment.JS\
 Local Storage
 
 ## User Experience
