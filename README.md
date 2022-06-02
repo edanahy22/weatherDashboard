@@ -20,7 +20,9 @@ When they type their selected city and press submit, a current weather forecast 
 The cities that the user types in are saved to a button below the search bar. These city buttons can be used as easy access to check out the weather in the users' favorite cities.
 
 ## Screenshot
+![Dashboard Landing Page](./assets/images/weatherdashboardscreenshot.png)
 
+![Mobile View](./assets/images/moblieview.png)
 
 ## URL
 [Weather Dashboard URL](https://edanahy22.github.io/weatherDashboard/)
