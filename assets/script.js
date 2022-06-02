@@ -52,7 +52,7 @@ function renderWeather(data) {
         } else if (uvi > 7) {
             $('#uv-index').attr('style','color: red');
         } else {
-            $('#uv-index').attr('style','color: yellow');
+            $('#uv-index').attr('style','color: orange');
         }
     }
     displayDate();
